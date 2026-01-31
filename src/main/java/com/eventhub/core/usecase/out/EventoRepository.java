@@ -14,7 +14,5 @@ public interface EventoRepository {
 
     Evento salvar(Evento evento);
 
-    Evento salvar(UUID id, Evento evento);
-
     void deletar(UUID id);
 }
