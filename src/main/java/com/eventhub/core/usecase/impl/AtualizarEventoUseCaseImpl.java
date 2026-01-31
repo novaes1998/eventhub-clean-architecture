@@ -21,6 +21,6 @@ public class AtualizarEventoUseCaseImpl implements AtualizarEventoUseCase {
         eventoRepository.buscarPorId(id)
                 .orElseThrow(() -> new EventoNaoEncontradoException(id));
 
-        return eventoRepository.salvar(id, evento);
+        return eventoRepository.salvar(evento);
     }
 }
