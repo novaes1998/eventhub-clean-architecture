@@ -16,8 +16,4 @@ public interface ParticipanteRepository {
     List<Participante> listar();
 
     void deletar(UUID id);
-
-    void comprarIngresso(UUID participanteId, UUID eventoId);
-
-    List<Evento> listarIngressos(UUID participanteId);
 }
