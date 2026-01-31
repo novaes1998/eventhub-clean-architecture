@@ -22,4 +22,16 @@ public class Participante {
         this.nome = nome;
         this.email = email;
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
