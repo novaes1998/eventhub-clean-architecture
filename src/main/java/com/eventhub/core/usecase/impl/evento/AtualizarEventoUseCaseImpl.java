@@ -1,4 +1,4 @@
-package com.eventhub.core.usecase.impl;
+package com.eventhub.core.usecase.impl.evento;
 
 import com.eventhub.core.domain.exception.EventoNaoEncontradoException;
 import com.eventhub.core.domain.model.Evento;

@@ -40,8 +40,37 @@ public class Evento {
         this.data = data;
 
         if(capacidade <= 0){
-            throw new EventoSemCapacidadeException();
+            throw EventoSemCapacidadeException.paraCriacao();
         }
         this.capacidade = capacidade;
+    }
+
+
+    public int getCapacidade() {
+        return capacidade;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+
+    public void decrementarCapacidade(){
+        if(capacidade <= 0){
+            throw EventoSemCapacidadeException.paraObter();
+        }
+        this.capacidade -= 1;
     }
 }
