@@ -4,11 +4,13 @@ import com.eventhub.core.domain.model.Evento;
 import com.eventhub.core.usecase.out.EventoRepository;
 import com.eventhub.infra.persistence.entity.EventoEntity;
 import com.eventhub.infra.persistence.repository.EventoJpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public class EventoRepositoryAdapter implements EventoRepository {
 
     private final EventoJpaRepository jpaRepository;

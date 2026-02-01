@@ -4,6 +4,8 @@ import com.eventhub.core.domain.model.Participante;
 import com.eventhub.core.usecase.in.participante.CriarParticipanteUseCase;
 import com.eventhub.core.usecase.out.ParticipanteRepository;
 
+import java.util.UUID;
+
 public class CriarParticipanteUseCaseImpl implements CriarParticipanteUseCase {
 
     private final ParticipanteRepository participanteRepository;
@@ -15,6 +17,12 @@ public class CriarParticipanteUseCaseImpl implements CriarParticipanteUseCase {
     @Override
     public Participante executar(Participante participante) {
 
-        return participanteRepository.salvar(participante);
+        Participante novoParticipante = new Participante(
+                UUID.randomUUID(),
+                participante.getNome(),
+                participante.getEmail()
+        );
+
+        return participanteRepository.salvar(novoParticipante);
     }
 }
