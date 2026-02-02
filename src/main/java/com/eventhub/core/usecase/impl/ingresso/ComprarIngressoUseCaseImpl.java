@@ -56,6 +56,7 @@ public class ComprarIngressoUseCaseImpl implements ComprarIngressoUseCase {
 
         //7. retorna infos ingresso comprado
         return new CompraIngressoResponse(
+                ingresso.getId(),
                 participante.getId(),
                 participante.getNome(),
                 evento.getId(),

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public record CompraIngressoResponse(
+        UUID ingressoId,
         UUID participanteId,
         String nomeParticipante,
         UUID eventoId,
