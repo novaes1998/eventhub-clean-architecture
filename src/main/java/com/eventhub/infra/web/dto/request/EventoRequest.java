@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public record EventoRequest(
         @NotBlank(message = "Nome do evento é obrigatório")
@@ -25,6 +26,17 @@ public record EventoRequest(
 
         return new Evento(
                 null,
+                nome,
+                data,
+                local,
+                capacidade
+        );
+    }
+
+    public Evento toDomainComId(UUID id){
+
+        return new Evento(
+                id,
                 nome,
                 data,
                 local,
