@@ -45,6 +45,7 @@ public class ListarTodosIngressosParticipanteUseCaseImpl implements ListarTodosI
                                     new EventoNaoEncontradoException(ingresso.getEventoId()));
 
                     return new CompraIngressoResponse(
+                            ingresso.getId(),
                             participante.getId(),
                             participante.getNome(),
                             evento.getId(),
