@@ -2,6 +2,7 @@ package com.eventhub.infra.config;
 
 import com.eventhub.core.usecase.impl.participante.*;
 import com.eventhub.core.usecase.in.participante.*;
+import com.eventhub.core.usecase.out.IngressoRepository;
 import com.eventhub.core.usecase.out.ParticipanteRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,9 +29,12 @@ public class ParticipanteBeanConfig {
     }
 
     @Bean
-    public DeletarParticipanteUseCase deletarParticipanteUseCase(ParticipanteRepository participanteRepository){
+    public DeletarParticipanteUseCase deletarParticipanteUseCase(
+            ParticipanteRepository participanteRepository,
+            IngressoRepository ingressoRepository
+            ){
 
-        return new DeletarParticipanteUseCaseImpl(participanteRepository);
+        return new DeletarParticipanteUseCaseImpl(participanteRepository, ingressoRepository);
     }
 
     @Bean
