@@ -53,7 +53,7 @@ public class Evento {
 
     public void decrementarCapacidade(){
         if(capacidade <= 0){
-            throw EventoSemCapacidadeException.paraObter();
+            throw new EventoSemCapacidadeException();
         }
         this.capacidade -= 1;
     }

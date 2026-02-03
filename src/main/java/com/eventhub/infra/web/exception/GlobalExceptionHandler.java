@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 
     // ---------- 400 - Regra de negócio ----------
     @ExceptionHandler({
-            EventoSemCapacidadeException.class,
+            EventoCapacidadeInvalidaException.class,
             DataInvalidaException.class
     })
     public ResponseEntity<ApiErrorResponse> handleBusinessRuleError(
@@ -52,5 +52,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
                 .body(ApiErrorResponse.of(404, ex.getMessage()));
+    }
+
+    // ---------- 409 - Conflito ----------
+    @ExceptionHandler(EventoSemCapacidadeException.class)
+    public ResponseEntity<ApiErrorResponse> handleConflict(RuntimeException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ApiErrorResponse.of(409, ex.getMessage()));
     }
 }

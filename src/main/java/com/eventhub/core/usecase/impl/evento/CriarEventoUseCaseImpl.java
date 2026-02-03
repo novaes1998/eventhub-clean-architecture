@@ -1,5 +1,6 @@
 package com.eventhub.core.usecase.impl.evento;
 
+import com.eventhub.core.domain.exception.EventoCapacidadeInvalidaException;
 import com.eventhub.core.domain.exception.EventoSemCapacidadeException;
 import com.eventhub.core.domain.model.Evento;
 import com.eventhub.core.usecase.in.evento.CriarEventoUseCase;
@@ -19,7 +20,7 @@ public class CriarEventoUseCaseImpl implements CriarEventoUseCase {
     public Evento executar(Evento evento) {
 
         if(evento.getCapacidade() <= 0){
-            throw EventoSemCapacidadeException.paraCriacao();
+            throw new EventoCapacidadeInvalidaException();
         }
 
         Evento novoEvento = new Evento(
