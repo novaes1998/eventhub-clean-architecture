@@ -3,28 +3,15 @@ package com.eventhub.core.domain.model;
 import com.eventhub.core.domain.exception.DataInvalidaException;
 import com.eventhub.core.domain.exception.EventoSemCapacidadeException;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
 public class Evento {
 
     private final UUID id;
-
-    @NotBlank
     private String nome;
-
-    @NotNull
     private LocalDate data;
-
-    @NotBlank
     private String local;
-
-    @NotNull
-    @Positive
     private int capacidade;
 
 

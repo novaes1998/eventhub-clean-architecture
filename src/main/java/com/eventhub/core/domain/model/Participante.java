@@ -8,12 +8,7 @@ import java.util.UUID;
 public class Participante {
 
     private final UUID id;
-
-    @NotBlank
     private String nome;
-
-    @NotBlank
-    @Email
     private String email;
 
 

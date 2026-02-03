@@ -1,6 +1,7 @@
 package com.eventhub.infra.web.dto.request;
 
 import com.eventhub.core.domain.model.Participante;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;
@@ -9,7 +10,7 @@ public record ParticipanteRequest(
         @NotBlank(message = "Nome do participante é obrigatório")
         String nome,
 
-        @NotBlank(message = "Email do participante é obrigatório")
+        @Email(message = "Email do participante é obrigatório")
         String email
 ) {
 
