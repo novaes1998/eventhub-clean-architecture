@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>EventHub - UI</h1>
+        <h1>EventHub</h1>
 
         <nav className="nav">
           <NavLink to="/eventos" className={({ isActive }) => (isActive ? "active" : "")}>
