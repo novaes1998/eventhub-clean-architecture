@@ -10,4 +10,6 @@ public interface IngressoRepository {
     Ingresso salvar(Ingresso ingresso);
 
     List<Ingresso> listarPorParticipante(UUID participanteId);
+
+    List<Ingresso> listarPorEvento(UUID eventoId);
 }

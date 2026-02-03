@@ -62,4 +62,12 @@ public class GlobalExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .body(ApiErrorResponse.of(409, ex.getMessage()));
     }
+
+    @ExceptionHandler(EventoNaoPodeSerDeletadoException.class)
+    public ResponseEntity<ApiErrorResponse> eventoNaoPodeSerDeletado(RuntimeException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(ApiErrorResponse.of(409, ex.getMessage()));
+    }
 }

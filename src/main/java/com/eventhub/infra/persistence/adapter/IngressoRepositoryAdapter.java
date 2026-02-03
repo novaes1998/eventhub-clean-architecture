@@ -38,6 +38,17 @@ public class IngressoRepositoryAdapter implements IngressoRepository {
                 .toList();
     }
 
+    @Override
+    public List<Ingresso> listarPorEvento(UUID eventoId) {
+
+        List<IngressoEntity> entity = jpaRepository.findIngressoByEventoId(eventoId);
+
+        return entity
+                .stream()
+                .map(this::toDomain)
+                .toList();
+    }
+
     // ---------------Mappers---------------
     private Ingresso toDomain(IngressoEntity entity){
 
