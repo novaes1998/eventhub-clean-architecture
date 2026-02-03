@@ -1,0 +1,607 @@
+{
+  "info": {
+    "_postman_id": "8f69f118-6186-49c8-9d27-627b4797a8a2",
+    "name": "EventHub  - Teste Collections",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48649452",
+    "_collection_link": "https://go.postman.co/collection/48649452-8f69f118-6186-49c8-9d27-627b4797a8a2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Create",
+      "item": [
+        {
+          "name": "Criar Evento",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 201 - Evento criado\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "const json = pm.response.json();\r",
+                  "pm.environment.set(\"eventoId\", json.id);\r",
+                  "\r",
+                  "console.log(\"Evento ID:\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Workshop Back-End\",\r\n  \"data\": \"2026-03-31\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 10\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/eventos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Participante",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 201 - Participante criado\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "const json = pm.response.json();\r",
+                  "pm.environment.set(\"participanteId\", json.id);\r",
+                  "\r",
+                  "console.log(\"Participante ID:\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lucas Silva\",\r\n  \"email\": \"lucas@email.com\"\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}} /participantes",
+              "host": [
+                "{{baseUrl}} "
+              ],
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Comprar Ingresso",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 201 - Ingresso comprado\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "const json = pm.response.json();\r",
+                  "pm.environment.set(\"ingressoId\", json.ingressoId);\r",
+                  "\r",
+                  "console.log(\"Ingresso ID:\", json.ingressoId);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/participantes/{{participanteId}}/ingressos/{{eventoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes",
+                "{{participanteId}}",
+                "ingressos",
+                "{{eventoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Find",
+      "item": [
+        {
+          "name": "Ingresso",
+          "item": [
+            {
+              "name": "Listar Ingressos por Participante",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/participantes/{{participanteId}}/ingressos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "participantes",
+                    "{{participanteId}}",
+                    "ingressos"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Evento",
+          "item": [
+            {
+              "name": "Buscar Evento ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/eventos/{{eventoId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "eventos",
+                    "{{eventoId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Listar Eventos",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Workshop Java\",\r\n  \"data\": \"2026-03-15\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 100\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/eventos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "eventos"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Participante",
+          "item": [
+            {
+              "name": "Listar Participantes",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/participantes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "participantes"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar Participante ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/participantes/{{participanteId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "participantes",
+                    "{{participanteId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Update",
+      "item": [
+        {
+          "name": "Atualizar Evento",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Workshop HTML\",\r\n  \"data\": \"2026-05-15\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 0\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/eventos/{{eventoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "eventos",
+                "{{eventoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Participante",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Lucas Silva\",\r\n  \"email\": \"lucas@email.com\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes",
+                "{{participanteId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Delete",
+      "item": [
+        {
+          "name": "Deletar Evento",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Workshop Java\",\r\n  \"data\": \"2026-03-15\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 100\r\n}\r\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/eventos/{{eventoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "eventos",
+                "{{eventoId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Participante",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Workshop Java\",\r\n  \"data\": \"2026-03-15\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 100\r\n}\r\n"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/participantes/{{participanteId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "participantes",
+                "{{participanteId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Testes de Erro / Validação",
+      "item": [
+        {
+          "name": "Validação de capacidade",
+          "item": [
+            {
+              "name": "Criar Evento com capacidade 1",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status 201 - Evento criado\", function () {\r",
+                      "    pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "const json = pm.response.json();\r",
+                      "pm.environment.set(\"eventoId\", json.id);\r",
+                      "\r",
+                      "console.log(\"Evento ID:\", json.id);\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Workshop Back-End\",\r\n  \"data\": \"2026-03-31\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 10\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/eventos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "eventos"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Comprar Ingresso Teste",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status 201 - Ingresso comprado\", function () {\r",
+                      "    pm.response.to.have.status(201);\r",
+                      "});\r",
+                      "\r",
+                      "const json = pm.response.json();\r",
+                      "pm.environment.set(\"ingressoId\", json.ingressoId);\r",
+                      "\r",
+                      "console.log(\"Ingresso ID:\", json.ingressoId);\r",
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/participantes/{{participanteId}}/ingressos/{{eventoId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "participantes",
+                    "{{participanteId}}",
+                    "ingressos",
+                    "{{eventoId}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Deletar Evento Teste",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Workshop Java\",\r\n  \"data\": \"2026-03-15\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 100\r\n}\r\n"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/eventos/{{eventoId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "eventos",
+                    "{{eventoId}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Não permitir evento com nome vazio",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 201 - Evento criado\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "const json = pm.response.json();\r",
+                  "pm.environment.set(\"eventoId\", json.id);\r",
+                  "\r",
+                  "console.log(\"Evento ID:\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"\",\r\n  \"data\": \"2026-03-31\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 10\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/eventos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Não permitir evento com data no passado",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status 201 - Evento criado\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "const json = pm.response.json();\r",
+                  "pm.environment.set(\"eventoId\", json.id);\r",
+                  "\r",
+                  "console.log(\"Evento ID:\", json.id);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Workshop Back-End\",\r\n  \"data\": \"2023-03-31\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 10\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/eventos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Evento não encontrado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/eventos/{{eventoId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "eventos",
+                "{{eventoId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
