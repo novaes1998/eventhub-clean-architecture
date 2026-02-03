@@ -8,7 +8,9 @@ import com.eventhub.core.usecase.out.EventoRepository;
 import com.eventhub.core.usecase.out.IngressoRepository;
 import com.eventhub.core.usecase.out.ParticipanteRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class IngressoBeanConfig {
 
     @Bean

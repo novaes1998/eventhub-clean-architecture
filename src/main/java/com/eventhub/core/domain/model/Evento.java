@@ -26,9 +26,6 @@ public class Evento {
         }
         this.data = data;
 
-        if(capacidade <= 0){
-            throw EventoSemCapacidadeException.paraCriacao();
-        }
         this.capacidade = capacidade;
     }
 
