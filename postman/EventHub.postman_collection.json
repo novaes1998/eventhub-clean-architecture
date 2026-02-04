@@ -464,28 +464,6 @@
                 }
               },
               "response": []
-            },
-            {
-              "name": "Deletar Evento Teste",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n  \"nome\": \"Workshop Java\",\r\n  \"data\": \"2026-03-15\",\r\n  \"local\": \"São Paulo\",\r\n  \"capacidade\": 100\r\n}\r\n"
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/eventos/{{eventoId}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "eventos",
-                    "{{eventoId}}"
-                  ]
-                }
-              },
-              "response": []
             }
           ]
         },
