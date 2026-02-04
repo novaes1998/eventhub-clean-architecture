@@ -1,6 +1,7 @@
 package com.eventhub.core.usecase;
 
 import com.eventhub.core.domain.exception.DataInvalidaException;
+import com.eventhub.core.domain.exception.EventoCapacidadeInvalidaException;
 import com.eventhub.core.domain.exception.EventoSemCapacidadeException;
 import com.eventhub.core.domain.model.Evento;
 import com.eventhub.core.usecase.impl.evento.CriarEventoUseCaseImpl;
@@ -79,8 +80,8 @@ public class CriarEventoUseCaseImplTest {
     @ValueSource(ints = { 0, -1, -10 })
     void deveLancarExcecaoQuandoCapacidadeForInvalida(int capacidade) {
 
-        EventoSemCapacidadeException exception =
-        assertThrows(EventoSemCapacidadeException.class, () ->{
+        EventoCapacidadeInvalidaException exception =
+        assertThrows(EventoCapacidadeInvalidaException.class, () ->{
 
             Evento evento = new Evento(
                     UUID.randomUUID(),
