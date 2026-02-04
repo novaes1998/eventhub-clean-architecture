@@ -1,0 +1,43 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: eventhub-db
+    environment:
+      MYSQL_DATABASE: eventhub
+      MYSQL_USER: eventhub
+      MYSQL_PASSWORD: eventhub123
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - eventhub_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build:
+      context: ./backend
+    container_name: eventhub-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/eventhub?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: eventhub
+      SPRING_DATASOURCE_PASSWORD: eventhub123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: eventhub-web
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  eventhub_mysql_data:
