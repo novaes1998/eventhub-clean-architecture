@@ -108,6 +108,8 @@ Os arquivos estão disponíveis na pasta: `/postman`
 - EventHub.postman_collection.json
 - EventHub.postman_environment.json
 
+Dica: a pasta "Testes de Erro / Validação" pode ser executada integralmente para validar automaticamente as regras da API.
+
 ### ▶️ Como importar e executar
 1. Abra o Postman
 2. Clique em Import
@@ -126,8 +128,6 @@ Além dos testes via Postman, o projeto também possui **testes automatizados em
     - `EventoControllerTest`
     - `ParticipanteControllerTest`
     - `IngressoControllerTest`
-
-Dica: a pasta "Testes de Erro / Validação" pode ser executada integralmente para validar automaticamente as regras da API.
 
 ## 📬 Status Codes
 - 200 OK
