@@ -1,8 +1,21 @@
-# Maven
+# ===== Maven / Java =====
 /target/
+**/target/
 !.mvn/wrapper/maven-wrapper.jar
 
-# IDEs
+# ===== Node / React / Vite =====
+/frontend/node_modules/
+**/node_modules/
+/frontend/dist/
+/frontend/.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env
+.env.*  # se você criar .env.production etc (pode ajustar se quiser versionar algum)
+
+# ===== IDEs =====
 .idea/
 *.iml
 .vscode/
@@ -10,9 +23,9 @@
 .project
 .classpath
 
-# Logs
+# ===== Logs =====
 *.log
 
-# OS
+# ===== OS =====
 .DS_Store
 Thumbs.db
