@@ -53,6 +53,8 @@ O projeto segue os princípios da Clean Architecture, com separação clara entr
 - Buscar por ID
 - Atualizar participante
 - Deletar participante
+
+### Ingressos
 - Comprar ingresso
 - Listar ingressos comprados
 
