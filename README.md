@@ -25,6 +25,19 @@ O projeto segue os princípios da Clean Architecture, com separação clara entr
 - Infrastructure (Persistência, frameworks)
 - Interfaces (Controllers / DTOs)
 
+## ⚙️ Decisões Técnicas Tomadas
+- Java 17: escolhido por ser a versão LTS mais estável e moderna, garantindo suporte a longo prazo e acesso a novos recursos da linguagem.
+- Spring Boot: adotado para acelerar o desenvolvimento de APIs REST, oferecendo integração nativa com Spring Web, Data JPA e Bean Validation.
+- Spring Data JPA: facilita o acesso e manipulação de dados, reduzindo boilerplate e permitindo foco nas regras de negócio.
+- MySQL: banco relacional amplamente utilizado, com boa performance, suporte a transações e fácil integração com Docker.
+- Bean Validation: utilizado para garantir integridade dos dados de entrada (ex.: validação de e-mail, campos obrigatórios).
+- Maven: escolhido como gerenciador de dependências e build por sua robustez e ampla adoção na comunidade Java.
+- React (com Vite): React foi escolhido pela flexibilidade e comunidade ativa; Vite por oferecer build rápido e ambiente de desenvolvimento otimizado.
+- Axios: biblioteca simples e eficiente para consumo da API REST.
+- React Router DOM: utilizado para navegação entre telas de forma declarativa e organizada.
+- Clean Architecture: adotada para garantir separação de responsabilidades, facilitar testes e permitir evolução futura sem acoplamento excessivo.
+- Docker + Docker Compose: escolhido para padronizar o ambiente de execução, simplificar deploy e garantir que backend, frontend e banco rodem de forma integrada.
+
 ## 📌 Funcionalidades
 ### Eventos
 - Criar evento
