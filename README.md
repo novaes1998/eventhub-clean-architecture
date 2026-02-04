@@ -62,7 +62,17 @@ Interface simples e objetiva em React para executar e testar as operações da A
 - Decrementar capacidade após a venda
 - Retornar erro ao buscar eventos inexistentes
 
-## 🖥️ Como executar o projeto
+## 🖥️ Como executar com Docker (backend + frontend + MySQL)
+### Pré-requisitos
+- Docker Desktop (Windows) ou Docker Engine (Linux) instalado e rodando.
+
+### Subir a aplicação
+1. Na raiz do projeto (`eventhub/`), execute:  `docker compose up --build`
+2. A aplicação ficará disponível em:
+    - Frontend: http://localhost:5173
+    - Backend (API): http://localhost:8080
+
+## 🖥️ Como executar o projeto localmente
 ### ✅ Backend (API)
 1. Configure o banco MySQL (conforme `application.properties`)
 2. Execute a aplicação Spring Boot
@@ -76,13 +86,18 @@ O frontend está localizado na pasta: `/frontend`
 3. Execute o projeto: `npm run dev`
 4. Acesse no navegador: `http://localhost:5173`
 
-### 🔁 Proxy para o Backend
-
+## 🔁 Proxy
+### Backend:
 O frontend utiliza o proxy do **Vite** para consumir a API localmente, evitando problemas de CORS.
-
 * As chamadas no frontend usam o prefixo `/api`.
 * O proxy reescreve `/api` para o endereço do backend (ex.: `/api/eventos` → `/eventos`).
 * **Ajuste:** Se a API estiver rodando em outra porta, altere o `target` no arquivo `frontend/vite.config.js`.
+
+### /api no Docker:
+- No Docker, o frontend é servido via Nginx e mantém o padrão de chamadas com `/api`, evitando problemas de CORS:
+    1. O frontend chama: `/api/eventos`
+    2. O Nginx redireciona para o backend: `http://backend:8080/eventos`
+       ✅ Assim, não é necessário alterar o código do frontend para rodar em Docker.
 
 ## 🧪 Testes de API (Postman)
 O projeto possui uma collection do Postman com todas as requisições da API, incluindo testes automatizados de validação e erro.
@@ -102,15 +117,15 @@ Os arquivos estão disponíveis na pasta: `/postman`
 6. Execute as requisições individualmente ou por pasta
 
 ### 🧪 Testes implementados
-- CRUD completo de Eventos
-- CRUD completo de Participantes
-- Compra de ingressos
-- Listagem de ingressos por participante
-- Testes de validação:
-    - Evento com nome vazio
-    - Evento com data no passado
-    - Evento lotado (capacidade = 1 com teste automatizado)
-    - Evento não encontrado
+Além dos testes via Postman, o projeto também possui **testes automatizados em Java** (ex.: JUnit/Mockito) cobrindo:
+- **Use cases (camada Application / core.usecase)**
+    - `CriarEventoUseCaseImplTest`
+    - `CriarParticipanteUseCaseImplTest`
+    - `ComprarIngressoUseCaseImplTest`
+- **Controllers (camada Infra / Web / infra.web.controller)**
+    - `EventoControllerTest`
+    - `ParticipanteControllerTest`
+    - `IngressoControllerTest`
 
 Dica: a pasta "Testes de Erro / Validação" pode ser executada integralmente para validar automaticamente as regras da API.
 
